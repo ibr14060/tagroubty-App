@@ -14,10 +14,10 @@ import 'RestaurantPage.dart';
 //import 'PostPage.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title});
+  const HomePage({Key? key, required this.title, required this.username});
 
   final String title;
-
+  final String username;
   @override
   State<HomePage> createState() => HomePageState();
 }
@@ -113,6 +113,7 @@ class HomePageState extends State<HomePage> {
       MaterialPageRoute(
           builder: (context) => const BeachPage(
                 title: 'Beach Category',
+                username: '_usernameController',
               )),
     );
   }
@@ -123,6 +124,7 @@ class HomePageState extends State<HomePage> {
       MaterialPageRoute(
           builder: (context) => const RestaurantPage(
                 title: 'Restaurant Category',
+                username: '_usernameController',
               )),
     );
   }
@@ -133,6 +135,7 @@ class HomePageState extends State<HomePage> {
       MaterialPageRoute(
           builder: (context) => const HotelPage(
                 title: 'Hotel Category',
+                username: '_usernameController',
               )),
     );
   }
@@ -143,6 +146,7 @@ class HomePageState extends State<HomePage> {
       MaterialPageRoute(
           builder: (context) => const CafePage(
                 title: 'Cafe Category',
+                username: '_usernameController',
               )),
     );
   }
@@ -153,6 +157,7 @@ class HomePageState extends State<HomePage> {
       MaterialPageRoute(
           builder: (context) => const MuseumPage(
                 title: 'Museum Category',
+                username: '_usernameController',
               )),
     );
   }
@@ -503,8 +508,9 @@ class HomePageState extends State<HomePage> {
                                   MaterialPageRoute(
                                       builder: (context) => CommentPage(
                                             title: 'Comment Page',
-                                            postName: post[
-                                                'name'], // Pass the post['name'] as an attribute
+                                            postName: post['name'],
+                                            username: widget
+                                                .username, // Pass the post['name'] as an attribute
                                           )),
                                 );
 
@@ -534,7 +540,11 @@ class HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const PostPage()),
+            MaterialPageRoute(
+                builder: (context) => PostPage(
+                    username:
+                        widget.username // Pass the post['name'] as an attribute
+                    )),
           );
         },
         tooltip: 'Write post',

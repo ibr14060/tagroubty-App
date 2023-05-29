@@ -6,10 +6,10 @@ import 'package:http/http.dart' as http;
 import 'CommentPage.dart';
 
 class CafePage extends StatefulWidget {
-  const CafePage({Key? key, required this.title});
+  const CafePage({Key? key, required this.title, required this.username});
 
   final String title;
-
+  final String username;
   @override
   State<CafePage> createState() => CafePageState();
 }
@@ -337,8 +337,9 @@ class CafePageState extends State<CafePage> {
                                   MaterialPageRoute(
                                       builder: (context) => CommentPage(
                                             title: 'Comment Page',
-                                            postName: post[
-                                                'name'], // Pass the post['name'] as an attribute
+                                            postName: post['name'],
+                                            username: widget.username,
+                                            // Pass the post['name'] as an attribute
                                           )),
                                 );
                                 // Handle the comment button click

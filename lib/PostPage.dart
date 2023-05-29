@@ -10,8 +10,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart'; // Import the intl package for date formatting
 
 class PostPage extends StatefulWidget {
-  const PostPage({super.key});
-
+  const PostPage({super.key, required this.username});
+  final String username;
   @override
   _PostPageState createState() => _PostPageState();
 }
@@ -362,6 +362,7 @@ class _PostPageState extends State<PostPage>
                       'category': _selectedCategory,
                       'name': _selectedLocationName,
                       'timestamp': formatTimestamp(Timestamp.now()),
+                      'username': widget.username,
                       // Include other fields as needed
                     };
 

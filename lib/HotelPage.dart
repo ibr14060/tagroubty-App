@@ -6,9 +6,10 @@ import 'package:http/http.dart' as http;
 import 'CommentPage.dart';
 
 class HotelPage extends StatefulWidget {
-  const HotelPage({Key? key, required this.title});
+  const HotelPage({Key? key, required this.title, required this.username});
 
   final String title;
+  final String username;
 
   @override
   State<HotelPage> createState() => HotelPageState();
@@ -337,8 +338,9 @@ class HotelPageState extends State<HotelPage> {
                                   MaterialPageRoute(
                                       builder: (context) => CommentPage(
                                             title: 'Comment Page',
-                                            postName: post[
-                                                'name'], // Pass the post['name'] as an attribute
+                                            postName: post['name'],
+                                            username: widget
+                                                .username, // Pass the post['name'] as an attribute
                                           )),
                                 );
                                 // Handle the comment button click

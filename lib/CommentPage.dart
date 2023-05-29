@@ -10,8 +10,9 @@ class CommentPage extends StatefulWidget {
     Key? key,
     required this.title,
     required this.postName,
+    required this.username,
   });
-
+  final String username;
   final String title;
   final String postName;
   @override
@@ -46,6 +47,7 @@ class CommentPageState extends State<CommentPage> {
           '_image': imageBase64,
           'rating': rating,
           'postname': widget.postName,
+          'username': widget.username,
         }),
       );
       /*

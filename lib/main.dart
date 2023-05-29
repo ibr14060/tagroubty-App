@@ -40,22 +40,30 @@ class MyApp extends StatelessWidget {
               ),
           '/HomePage': (dummyCtx) => HomePage(
                 title: 'Home Page',
+                username: '_usernameController',
               ),
-          '/PostPage': (dummyCtx) => PostPage(),
+          '/PostPage': (dummyCtx) => PostPage(
+                username: '_usernameController',
+              ),
           '/BeachPage': (dummyCtx) => BeachPage(
                 title: 'Beach Category',
+                username: '_usernameController',
               ),
           '/RestaurantPage': (dummyCtx) => RestaurantPage(
                 title: 'Beach Category',
+                username: '_usernameController',
               ),
           '/HotelPage': (dummyCtx) => HotelPage(
                 title: 'Hotel Category',
+                username: '_usernameController',
               ),
           '/MuseumPage': (dummyCtx) => MuseumPage(
                 title: 'Museum Category',
+                username: '_usernameController',
               ),
           '/CafePage': (dummyCtx) => CafePage(
                 title: 'Cafe Category',
+                username: '_usernameController',
               ),
           '/GuestBeachPage': (dummyCtx) => GuestBeachPage(
                 title: 'Beach Category',
@@ -75,6 +83,7 @@ class MyApp extends StatelessWidget {
           '/CommentPage': (dummyCtx) => CommentPage(
                 title: 'Comment Page',
                 postName: 'post1',
+                username: '_usernameController',
               )
         });
   }

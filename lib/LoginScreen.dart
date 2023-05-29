@@ -85,11 +85,13 @@ class _LoginScreenState extends State<LoginScreenapp> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomePage(
-            title: 'Home page',
-          ),
-        ),
+            builder: (context) => HomePage(
+                title: 'Home Page',
+                username: username // Pass the post['name'] as an attribute
+                )),
       );
+
+      //
     } else {
       showDialog(
         context: context,
