@@ -6,7 +6,7 @@ import 'CreateNewAccount.dart';
 import 'GuestPage.dart';
 import 'HomePage.dart';
 
-void main() => runApp(LoginScreen());
+//void main() => runApp(LoginScreen());
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -81,6 +81,7 @@ class _LoginScreenState extends State<LoginScreenapp> {
           );
         },
       );
+
       Navigator.push(
         context,
         MaterialPageRoute(

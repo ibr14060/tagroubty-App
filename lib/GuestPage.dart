@@ -49,6 +49,7 @@ class GuestPageState extends State<GuestPage> {
             'latitude': value['Location']['coordinates'][0],
             'longitude': value['Location']['coordinates'][1],
             'category': value['category'],
+            'timestamp': value['timestamp'],
           };
 
           postData.add(post);

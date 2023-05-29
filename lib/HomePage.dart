@@ -56,6 +56,8 @@ class HomePageState extends State<HomePage> {
 
           postData.add(post);
         });
+        // var responseData = json.decode(response.body);
+        // var username = responseData['name'];
 
         setState(() {});
       } else {
@@ -494,13 +496,18 @@ class HomePageState extends State<HomePage> {
                             SizedBox(width: 8),
                             ElevatedButton.icon(
                               onPressed: () {
+                                print(post['name']);
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const CommentPage(
+                                      builder: (context) => CommentPage(
                                             title: 'Comment Page',
+                                            postName: post[
+                                                'name'], // Pass the post['name'] as an attribute
                                           )),
                                 );
+
                                 // Handle the comment button click
                                 print('Comment button clicked');
                               },

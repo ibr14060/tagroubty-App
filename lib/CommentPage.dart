@@ -1,18 +1,19 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:latlong2/latlong.dart';
-//import 'package:flutter_map/flutter_map.dart';
-//import 'location_selection_page.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-//import 'package:geolocator/geolocator.dart';
 
 class CommentPage extends StatefulWidget {
-  const CommentPage({Key? key, required this.title});
+  const CommentPage({
+    Key? key,
+    required this.title,
+    required this.postName,
+  });
 
   final String title;
-
+  final String postName;
   @override
   State<CommentPage> createState() => CommentPageState();
 }
@@ -44,6 +45,7 @@ class CommentPageState extends State<CommentPage> {
           'experience': experience,
           '_image': imageBase64,
           'rating': rating,
+          'postname': widget.postName,
         }),
       );
       /*
@@ -54,6 +56,7 @@ class CommentPageState extends State<CommentPage> {
       }
 */
       if (response.statusCode == 200) {
+        sendNotificationToUser();
         // Comment posted successfully
         print('Comment posted successfully');
         showDialog(
@@ -94,14 +97,17 @@ class CommentPageState extends State<CommentPage> {
         commentData.clear();
 
         jsonData.forEach((key, value) {
-          final Map<String, dynamic> comment = {
-            'id': key,
-            'experience': value['experience'],
-            '_image': value['_image'],
-            'rating': value['rating'],
-          };
+          final String postname = value['postname'];
+          if (postname == widget.postName) {
+            final Map<String, dynamic> comment = {
+              'id': key,
+              'experience': value['experience'],
+              '_image': value['_image'],
+              'rating': value['rating'],
+            };
 
-          commentData.add(comment);
+            commentData.add(comment);
+          }
         });
 
         setState(() {});
@@ -113,6 +119,53 @@ class CommentPageState extends State<CommentPage> {
     }
   }
 
+  //
+  Future<void> sendNotificationToUser() async {
+    try {
+      final response = await http.get(
+          Uri.parse('https://your-firebase-project.firebaseio.com/users.json'));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonData = json.decode(response.body);
+
+        jsonData.forEach((key, value) async {
+          // Replace `postOwnerId` with the ID of the user who posted the commented post
+          if (key == widget.postName) {
+            final String fcmToken = value['fcmToken'];
+
+            final message = {
+              'notification': {
+                'title': 'New Comment',
+                'body': 'Someone commented on your post.',
+              },
+              'token': fcmToken,
+            };
+
+            final response = await http.post(
+              Uri.parse('https://fcm.googleapis.com/fcm/send'),
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'key=YOUR_SERVER_KEY',
+              },
+              body: json.encode(message),
+            );
+
+            if (response.statusCode == 200) {
+              print('Notification sent successfully.');
+            } else {
+              print('Failed to send notification: ${response.statusCode}');
+            }
+          }
+        });
+      } else {
+        print('Failed to fetch users: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error sending notification: $error');
+    }
+  }
+
+//
   Future<void> _pickImage(ImageSource source) async {
     final pickedImage = await ImagePicker().pickImage(source: source);
     setState(() {
@@ -148,7 +201,7 @@ class CommentPageState extends State<CommentPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                     side: BorderSide(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 153, 153, 153),
                       width: 1,
                     ),
                   ),
@@ -175,6 +228,20 @@ class CommentPageState extends State<CommentPage> {
                             ),
                           ),
                         SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Color.fromARGB(255, 218, 200, 46),
+                              size: 22,
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              'Rating: ${post['rating']} out of 5',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),

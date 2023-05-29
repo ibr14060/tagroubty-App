@@ -45,6 +45,7 @@ class CafePageState extends State<CafePage> {
               'latitude': value['Location']['coordinates'][0],
               'longitude': value['Location']['coordinates'][1],
               'category': value['category'],
+              'timestamp': value['timestamp'],
             };
 
             postData.add(post);
@@ -98,8 +99,68 @@ class CafePageState extends State<CafePage> {
     }
   }
 
+  void sortPostsByName() {
+    setState(() {
+      postData.sort((a, b) => a['name'].compareTo(b['name']));
+    });
+  }
+
+  void sortPostsByRating() {
+    setState(() {
+      postData.sort((b, a) => a['rating'].compareTo(b['rating']));
+    });
+  }
+
+  void sortPostsByTimeStamp() {
+    setState(() {
+      postData.sort((b, a) {
+        final aTimestamp = a['timestamp'];
+        print(aTimestamp);
+        final bTimestamp = b['timestamp'];
+
+        if (aTimestamp == null && bTimestamp == null) {
+          print('object');
+          return 0;
+        } else if (aTimestamp == null) {
+          print('object1');
+          return 1; // Treat null as greater than non-null values
+        } else if (bTimestamp == null) {
+          print('object2');
+          return -1; // Treat null as greater than non-null values
+        }
+
+        return aTimestamp.compareTo(bTimestamp);
+      });
+    });
+  }
+
   String searchText = '';
   bool isSearchFocused = false;
+  List<Map<String, dynamic>> SortData = [
+    {
+      'name': 'Time(Latest)',
+      'icon': Icons.access_time,
+      'onPressed': () {
+        print('Time button clicked');
+      },
+    },
+    {
+      'name': 'Alphabetical(A -> Z)',
+      'icon': Icons.sort_by_alpha,
+      'onPressed': () {
+        //  navigatetobeach();
+        print('Alphabet button clicked');
+      },
+    },
+    {
+      'name': 'Rating(5 -> 1)',
+      'icon': Icons.star,
+      'onPressed': () {
+        //  navigatetobeach();
+        print('Rating button clicked');
+      },
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -136,6 +197,56 @@ class CafePageState extends State<CafePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  'Sort by ',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+
+              // SizedBox(height: 16),
+            ],
+          ),
+          SizedBox(
+            height: 54,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: SortData.length,
+              itemBuilder: (context, index) {
+                final button = SortData[index];
+
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      //button['onPressed']
+                      if (button['name'] == "Alphabetical(A -> Z)") {
+                        sortPostsByName();
+                      } else if (button['name'] == "Time(Latest)") {
+                        sortPostsByTimeStamp();
+                      } else {
+                        sortPostsByRating();
+                      }
+                    },
+                    icon: Icon(button['icon']),
+                    label: Text(button['name']),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      padding: EdgeInsets.all(12.0),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
           SizedBox(height: 16),
           Expanded(
             child: ListView.builder(
@@ -224,8 +335,10 @@ class CafePageState extends State<CafePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const CommentPage(
+                                      builder: (context) => CommentPage(
                                             title: 'Comment Page',
+                                            postName: post[
+                                                'name'], // Pass the post['name'] as an attribute
                                           )),
                                 );
                                 // Handle the comment button click

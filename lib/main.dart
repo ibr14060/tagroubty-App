@@ -1,3 +1,4 @@
+import 'package:a5er_ta3del/slideshow.dart';
 import 'package:flutter/material.dart';
 import 'CommentPage.dart';
 import '/HomePage.dart';
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
         //  home: LoginScreenapp(),
         initialRoute: '/',
         routes: {
-          '/': (dummCtx) => LoginScreenapp(),
+          '/': (dummCtx) => SlideShow(),
+          '/LoginScreenapp': (dummyCtx) => LoginScreenapp(),
           '/CreateNewAccount': (dummyCtx) => CreateNewAccount(),
           '/GuestPage': (dummyCtx) => GuestPage(
                 title: 'Home Page',
@@ -72,6 +74,7 @@ class MyApp extends StatelessWidget {
               ),
           '/CommentPage': (dummyCtx) => CommentPage(
                 title: 'Comment Page',
+                postName: 'post1',
               )
         });
   }
