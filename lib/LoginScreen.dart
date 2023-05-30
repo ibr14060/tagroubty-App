@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreenapp> {
   void _signup() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const CreateNewAccount()),
+      MaterialPageRoute(builder: (context) => CreateNewAccount()),
     );
   }
 

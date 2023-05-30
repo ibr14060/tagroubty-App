@@ -46,7 +46,6 @@ class SlideShowappState extends State<SlideShowapp> {
     Image.asset('assets/download14.jpg', fit: BoxFit.cover),
     Image.asset('assets/download2.JPG', fit: BoxFit.cover),
     Image.asset('assets/download16.jpg', fit: BoxFit.cover),
-    Image.asset('assets/download17.jpg', fit: BoxFit.cover),
   ];
 
   @override

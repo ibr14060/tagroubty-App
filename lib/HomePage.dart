@@ -24,6 +24,8 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> postData = [];
+  List<Map<String, dynamic>> allusersData = [];
+  List<Map<String, dynamic>> usersData = [];
 
   void initState() {
     super.initState();
@@ -37,7 +39,9 @@ class HomePageState extends State<HomePage> {
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonData = json.decode(response.body);
+//
 
+//
         // Clear existing post data
         postData.clear();
 
@@ -52,6 +56,7 @@ class HomePageState extends State<HomePage> {
             'category': value['category'],
             'name': value['name'],
             'timestamp': value['timestamp'],
+            'username': value['username'],
           };
 
           postData.add(post);
@@ -67,6 +72,10 @@ class HomePageState extends State<HomePage> {
       print('Error fetching posts: $error');
     }
   }
+
+  //
+
+  //
 
   Future<void> fetchPostsofsearch(String name) async {
     try {
@@ -92,6 +101,7 @@ class HomePageState extends State<HomePage> {
               'category': value['category'],
               'name': value['name'],
               'timestamp': value['timestamp'],
+              'username': value['username'],
             };
 
             postData.add(post);
@@ -408,6 +418,7 @@ class HomePageState extends State<HomePage> {
               itemCount: postData.length,
               itemBuilder: (context, index) {
                 final post = postData[index];
+                //     final useer = usersData[postData.length];
 
                 return Card(
                   shape: RoundedRectangleBorder(
@@ -424,6 +435,41 @@ class HomePageState extends State<HomePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(width: 8.0),
+                        Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.person_2),
+                              onPressed: toggleLike,
+                            ),
+                            Flexible(
+                              child: Text(
+                                'UserName',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              ' :',
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            // const SizedBox(width: 8.0),
+                            Flexible(
+                              child: Text(
+                                post['username'],
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         Row(children: [
                           // SizedBox(width: 16.0),
                           Text(

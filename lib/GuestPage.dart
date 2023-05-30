@@ -456,7 +456,7 @@ class GuestPageState extends State<GuestPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const CreateNewAccount()),
+            MaterialPageRoute(builder: (context) => CreateNewAccount()),
           );
         },
         tooltip: 'sign up',
