@@ -18,19 +18,26 @@ Key Features:
 Tagroubty provides a user-friendly interface for both guest and logged-in users, ensuring that everyone can benefit from the app's personalized recommendations. Discover new places, make the most of your travel experiences, and let Tagroubty be your trusted companion throughout your journey.
 </p>
 <h1>screenshots</h1>
-![slideshow screen](https://github.com/ibr14060/tagroubty-App/assets/104881960/43a303e0-3205-4c39-bb2b-b36f5378c88a)
+
+![Screenshot (322)](https://github.com/ibr14060/tagroubty-App/assets/104881960/8d0729f7-ea6a-48f9-b5d2-682a6f9f386a)
 
 <h2>Logged in user </h2>
-![LogIn page](https://github.com/ibr14060/tagroubty-App/assets/104881960/7ba79d94-bb0e-43bf-bb84-62f76f12a956)
-![LogedIn home page](https://github.com/ibr14060/tagroubty-App/assets/104881960/c8985a13-cc18-4c59-af90-4018d7e93a78)
-![create new post](https://github.com/ibr14060/tagroubty-App/assets/104881960/5c82da74-b13f-40ac-ba04-28fc54c18b69)
-![comment page](https://github.com/ibr14060/tagroubty-App/assets/104881960/3c7864aa-b56b-4546-92cd-776319242e99)
-![Categories](https://github.com/ibr14060/tagroubty-App/assets/104881960/cc828e52-f24c-4698-9a18-c4d18c6a8026)
-![search page](https://github.com/ibr14060/tagroubty-App/assets/104881960/a9e7d8ec-ca5e-4b90-bd34-fdb7abebda31)
+
+![Screenshot (325)](https://github.com/ibr14060/tagroubty-App/assets/104881960/b2a80092-d722-474e-8c82-151f862e4f49)
+
+![Screenshot (326)](https://github.com/ibr14060/tagroubty-App/assets/104881960/f594072c-535c-4802-a243-f032a36200bb)
+![Screenshot (328)](https://github.com/ibr14060/tagroubty-App/assets/104881960/cd55b2be-3080-436b-80da-9f57ded24589)
+
+![Screenshot (329)](https://github.com/ibr14060/tagroubty-App/assets/104881960/1a29dd70-1b0c-4fc7-a416-cefa3f710413)
+![Screenshot (323)](https://github.com/ibr14060/tagroubty-App/assets/104881960/8d694c11-18e4-4c5a-8a49-064be7d2d287)
+
+![Screenshot (330)](https://github.com/ibr14060/tagroubty-App/assets/104881960/bdee8d88-f92e-44b0-be59-fd9567814ef1)
 
 <h3>Guest </h3>
-![Guest Home page](https://github.com/ibr14060/tagroubty-App/assets/104881960/147f38f3-db39-4cd9-8dac-95abc7c9537d)
-![Registration Page](https://github.com/ibr14060/tagroubty-App/assets/104881960/56d50d10-46ca-44fd-9ed1-e569d28a360c)
+
+![Screenshot (324)](https://github.com/ibr14060/tagroubty-App/assets/104881960/191e7ede-6455-49ff-8d67-7d98e27e6868)
+![Screenshot (327)](https://github.com/ibr14060/tagroubty-App/assets/104881960/663949a1-14e5-4c25-8fdb-e2662d71b548)
+
 <h4>Ports</h4>
 <p> Client : 3000</p>
 <h5>Authors</h5>
